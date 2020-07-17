@@ -291,6 +291,9 @@ export default class ImageTool {
 
       this.setTune(tune, value);
     });
+
+    if (data.width) this._data.width = data.width;
+    if (data.height) this._data.height = data.height;
   }
 
   /**
@@ -358,6 +361,7 @@ export default class ImageTool {
    * @private
    *
    * @param {string} tuneName - tune that has been clicked
+   * @param {string|int|boolean} state - new state
    * @returns {void}
    */
   tuneToggled(tuneName, state) {
@@ -369,7 +373,7 @@ export default class ImageTool {
    * Set one tune
    *
    * @param {string} tuneName - {@link Tunes.tunes}
-   * @param {boolean} value - tune state
+   * @param {boolean|string} value - tune state
    * @returns {void}
    */
   setTune(tuneName, value) {
@@ -389,6 +393,11 @@ export default class ImageTool {
         .catch(err => {
           console.error(err);
         });
+    }
+
+    // clear "auto" values (remove entry from data) for width/height
+    if ((tuneName === 'height' || tuneName === 'width') && value === 'auto') {
+      delete this._data[tuneName];
     }
   }
 

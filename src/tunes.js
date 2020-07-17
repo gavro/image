@@ -73,6 +73,8 @@ export default class Tunes {
       buttonBase: this.api.styles.settingsButton,
       button: 'image-tool__tune',
       buttonActive: this.api.styles.settingsButtonActive,
+      inputLabel: 'image-tool__input',
+      input: this.api.styles.input,
     };
   }
 
@@ -110,6 +112,52 @@ export default class Tunes {
 
       wrapper.appendChild(el);
     });
+
+
+    // Image width attribute
+    const widthInput = make('input', [this.CSS.input], {
+      placeholder: 'auto',
+      value: toolData.width || ''
+    });
+    const widthLabel = make('label', [this.CSS.buttonBase, this.CSS.inputLabel], {
+      innerHTML: `Width: `,
+      title: 'Image width',
+    });
+
+    widthInput.addEventListener('change', (e) => {
+      // must set to a value (null, 0 or "" might not trigger a proper change; "auto" value will be cleared @ setTune)
+      this.onChange('height', parseInt(e.target.value) || 'auto');
+    });
+
+    this.api.tooltip.onHover(widthLabel, 'Image width', {
+      placement: 'top',
+    });
+
+    widthLabel.appendChild(widthInput);
+    wrapper.appendChild(widthLabel);
+
+
+    // Image height attribute
+    const heightInput = make('input', [this.CSS.input], {
+      placeholder: 'auto',
+      value: toolData.height || ''
+    });
+    const heightLabel = make('label', [this.CSS.buttonBase, this.CSS.inputLabel], {
+      innerHTML: `Height: `,
+      title: 'Image height',
+    });
+
+    heightInput.addEventListener('change', (e) => {
+      // must set to a value (null, 0 or "" might not trigger a proper change; "auto" value will be cleared @ setTune)
+      this.onChange('height', parseInt(e.target.value) || 'auto');
+    });
+
+    this.api.tooltip.onHover(heightLabel, 'Image height', {
+      placement: 'top',
+    });
+
+    heightLabel.appendChild(heightInput);
+    wrapper.appendChild(heightLabel);
 
     return wrapper;
   }
