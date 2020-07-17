@@ -159,6 +159,7 @@ export default class ImageTool {
    * @returns {HTMLDivElement}
    */
   render() {
+    this.ui.setImageDimensions(this.data);
     return this.ui.render(this.data);
   }
 
@@ -396,8 +397,9 @@ export default class ImageTool {
     }
 
     // clear "auto" values (remove entry from data) for width/height
-    if ((tuneName === 'height' || tuneName === 'width') && value === 'auto') {
-      delete this._data[tuneName];
+    if (tuneName === 'height' || tuneName === 'width') {
+      if (value === 'auto') delete this._data[tuneName];
+      this.ui.setImageDimensions(this._data);
     }
   }
 

@@ -246,6 +246,16 @@ export default class Ui {
   applyTune(tuneName, status) {
     this.nodes.wrapper.classList.toggle(`${this.CSS.wrapper}--${tuneName}`, status);
   }
+
+  /**
+   * Sets image dimensions (using style attributes).
+   *
+   * @param data
+   */
+  setImageDimensions(data) {
+    this.nodes.imageEl.style.width = data.width ? data.width + 'px' : null;
+    this.nodes.imageEl.style.height = data.height ? data.height + 'px' : null;
+  }
 }
 
 /**

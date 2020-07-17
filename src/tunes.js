@@ -126,7 +126,7 @@ export default class Tunes {
 
     widthInput.addEventListener('change', (e) => {
       // must set to a value (null, 0 or "" might not trigger a proper change; "auto" value will be cleared @ setTune)
-      this.onChange('height', parseInt(e.target.value) || 'auto');
+      this.onChange('width', parseInt(e.target.value) || 'auto');
     });
 
     this.api.tooltip.onHover(widthLabel, 'Image width', {
