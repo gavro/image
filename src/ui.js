@@ -253,8 +253,10 @@ export default class Ui {
    * @param data
    */
   setImageDimensions(data) {
-    this.nodes.imageEl.style.width = data.width ? data.width + 'px' : null;
-    this.nodes.imageEl.style.height = data.height ? data.height + 'px' : null;
+    if (this.nodes && this.nodes.imageEl) {
+      this.nodes.imageEl.style.width = data.width ? data.width + 'px' : null;
+      this.nodes.imageEl.style.height = data.height ? data.height + 'px' : null;
+    }
   }
 }
 
